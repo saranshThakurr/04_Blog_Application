@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Ashok IT</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+	<style>
+	</style>
+</head>
+
+<body class="bg-light">
+
+	<div class="container">
+		<nav class="navbar navbar-expand-lg " style="background-color:rgb(64, 0, 64);">
+			<div class="container-fluid">
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+					data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+					<a class="navbar-brand text-light " href="#">BLOG</a>
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+						<li class="nav-item ">
+							<a class="nav-link active text-light" aria-current="page" href="/dashboard">Posts</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link text-light" href="/newpost">New Post</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link text-light" href="/comment">Comments</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link text-light" href="/logout">Logout</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+		<section class=" gradient-form d-flex justify-content-center align-items-center"
+			style="background:linear-gradient(270deg, #85ECBE, #1E7C7D);">
+			<div class="col-12 d-flex justify-content-center align-items-center border ">
+				<h2 class="text-uppercase py-2">List of Posts Comments</h2>
+			</div>
+		</section>
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<th scope="col">No.</th>
+						<th scope="col">Email</th>
+						<th scope="col">Comment</th>
+						<th scope="col">Created Date</th>
+						<th scope="col">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row">1</th>
+						<td>Mark</td>
+						<td>Otto</td>
+						<td>@mdo</td>
+						<td>
+							<a href="/"class="btn btn-danger">delete</a>
+						</td>
+					</tr>
+					
+				</tbody>
+			</table>
+
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
+			</script>
+</body>
+</html>
