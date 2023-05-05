@@ -44,7 +44,7 @@
 
 		<section class="gradient-form d-flex justify-content-center align-items-center bg-dark">
 			<div class="w-50 border rounded p-3 bg-light my-5">
-			<p th:text="${errmsg}" class="text-uppercase fw-bolder bg-danger text-light  rounded  text-center" />
+			<p th:text="${errMsg}" class="text-uppercase fw-bolder bg-danger text-light  rounded  text-center" />
 				<form th:action="@{/login}" th:object="${objForm}" method="POST">
 					<h3 class="text-center text-uppercase text-primary">login</h3>
 					<div class="form-floating mb-3">

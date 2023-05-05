@@ -1,5 +1,6 @@
 package com.saranshit.controller;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,7 @@ public class UserController {
 
 	@Autowired
 	private UserService service;
+	
 	
 	@GetMapping("/")
 	public String indexPage() {
@@ -57,10 +59,6 @@ public class UserController {
 		return "login";
 	}
 	
-	@GetMapping("/dashboard")
-	public String dashboardPage() {
-		
-		return "dashboard";
-	}
+	
 	
 }

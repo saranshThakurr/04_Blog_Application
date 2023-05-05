@@ -74,14 +74,14 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<th scope="row">1</th>
-						<td>Mark</td>
-						<td>Otto</td>
-						<td>@mdo</td>
+					<tr th:each="list:${lists}">
+						<th th:text="${listStat.index} + 1"></th>
+						<td th:text="${list.title}"></td>
+						<td th:text="${list.description}"></td>
+						<td th:text="${list.createdDate}"></td>
 						<td>
-							<a href="/" class="btn btn-primary">Edit</a>
-							<a href="/"class="btn btn-danger">delete</a>
+							<a href="@{'/edit/'+${list.blogId}}" class="btn btn-primary">Edit</a>
+							<a href="@{'/delete/'+${list.blogId}}"class="btn btn-danger">delete</a>
 						</td>
 					</tr>
 					

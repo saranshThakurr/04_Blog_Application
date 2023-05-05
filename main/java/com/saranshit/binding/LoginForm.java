@@ -1,6 +1,5 @@
 package com.saranshit.binding;
 
-import org.springframework.stereotype.Component;
 
 import lombok.Data;
 

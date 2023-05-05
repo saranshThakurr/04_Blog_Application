@@ -49,8 +49,8 @@
 		<section class="gradient-form d-flex justify-content-center align-item-center bg-dark">
 			<div class="border rounded p-3 bg-light innerform my-5">
 				
-				<p th:text="${succmsg}" class="text-uppercase fw-bolder bg-success text-light  rounded  text-center"/>
-				<p th:text="${errmsg}" class="text-uppercase fw-bolder bg-danger text-light  rounded  text-center" />
+				<p th:text="${succMsg}" class="text-uppercase fw-bolder bg-success text-light  rounded  text-center"/>
+				<p th:text="${errMsg}" class="text-uppercase fw-bolder bg-danger text-light  rounded  text-center" />
 	
 				<form th:action="@{/signup}" th:object="${objForm}" method="POST">
 					<h3 class="text-center text-uppercase text-primary">Registration</h3>
