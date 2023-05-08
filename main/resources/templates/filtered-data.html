@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<table class="table table-striped table-hover" border="1" id="filterBlogTbl">
+				<thead>
+					<tr>
+						<th scope="col">No.</th>
+						<th scope="col">Title</th>
+						<th scope="col">Description</th>
+						<th scope="col">Date</th>
+						<th scope="col">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="list:${filteredBlogList}">
+						<th th:text="${listStat.index} + 1"></th>
+						<td th:text="${list.title}"></td>
+						<td th:text="${list.description}"></td>
+						<td th:text="${list.createdDate}"></td>
+						<td>
+							<a th:href="@{'/edit/'+${list.blogId}}" class="btn btn-primary">Edit</a>
+							<a th:href="@{'/delete/'+${list.blogId}}"class="btn btn-danger">delete</a>
+						</td>
+					</tr>
+					
+				</tbody>
+			</table>
+
+</body>
+</html>

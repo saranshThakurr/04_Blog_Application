@@ -40,6 +40,8 @@
 				</div>
 			</div>
 		</nav>
+			<p th:text="${errMsg}" class="text-uppercase fw-bolder bg-danger text-light  rounded  text-center" />
+			<p th:text="${succMsg}" class="text-uppercase fw-bolder bg-success text-light  rounded  text-center" />
 
 		<section class=" gradient-form d-flex justify-content-center align-items-center"
 			style="background:linear-gradient(270deg, #85ECBE, #1E7C7D);">
@@ -58,13 +60,13 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<th scope="row">1</th>
-						<td>Mark</td>
-						<td>Otto</td>
-						<td>@mdo</td>
+					<tr th:each="list:${comments}">
+						<th th:text="${listStat.index}+1"></th>
+						<td th:text="${list.email}"></td>
+						<td th:text="${list.comment}"></td>
+  						<td th:text="${list.createdDate}"></td>
 						<td>
-							<a href="/"class="btn btn-danger">delete</a>
+							<a href="@{'/commentDetele/'+${list.cid}}"class="btn btn-danger">delete</a>
 						</td>
 					</tr>
 					

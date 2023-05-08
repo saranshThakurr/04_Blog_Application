@@ -3,6 +3,7 @@ package com.saranshit.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,6 +15,7 @@ import com.saranshit.binding.NewPostForm;
 import com.saranshit.entity.BlogPosts;
 import com.saranshit.entity.Users;
 import com.saranshit.repo.BlogRepo;
+import com.saranshit.repo.CommentsRepo;
 import com.saranshit.repo.UserRepo;
 
 @Service
@@ -28,6 +30,9 @@ public class PostServiceImpl implements PostService {
 	@Autowired
 	private UserRepo userRepo;
 	
+	@Autowired
+	private CommentsRepo comRepo;
+	
 	
 	@Override
 	public List<BlogPosts> getBlogList() {
@@ -39,6 +44,27 @@ public class PostServiceImpl implements PostService {
 			 List<BlogPosts> posts = users.getPosts();
 			 return posts;
 		}
+		return null;
+	}
+	
+	@Override
+	public List<BlogPosts> getAllBlogs() {
+		// TODO Auto-generated method stub
+		List<BlogPosts> findAll = blogRepo.findAll();
+		return findAll;
+	}
+	
+	@Override
+	public List<BlogPosts> getFilteredData(String name) {
+		if(name!=null && name!="") {
+			Integer userId = (Integer)session.getAttribute("userId");
+		    Users users = userRepo.findById(userId).get();
+		    List<BlogPosts> posts = users.getPosts();
+		    List<BlogPosts> collect= posts.stream().filter(e->e.getTitle().contains(name))
+		    			  .collect(Collectors.toList());	
+		  
+		    return collect;
+		 }
 		return null;
 	}
 	
@@ -80,6 +106,15 @@ public class PostServiceImpl implements PostService {
 			  return true; 
 			  }
 		 
+		return false;
+	}
+	
+	@Override
+	public boolean deleteComment(Integer id) {
+		if(id!=null) {
+			comRepo.deleteById(id);
+			return true;
+		}
 		return false;
 	}
 	

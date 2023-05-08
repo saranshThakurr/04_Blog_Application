@@ -16,4 +16,12 @@ public interface PostService {
 	public boolean updateBlog(NewPostForm form);
 	
 	public boolean deleteBlog(Integer id);
+	
+	public boolean deleteComment(Integer id);
+	
+	public List<BlogPosts> getFilteredData(String name);
+	
+	public List<BlogPosts> getAllBlogs();
+	
+	
 }
