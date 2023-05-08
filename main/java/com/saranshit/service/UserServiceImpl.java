@@ -1,5 +1,7 @@
 package com.saranshit.service;
 
+import java.util.Optional;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.BeanUtils;
@@ -8,7 +10,9 @@ import org.springframework.stereotype.Service;
 
 import com.saranshit.binding.LoginForm;
 import com.saranshit.binding.SignUpForm;
+import com.saranshit.entity.BlogPosts;
 import com.saranshit.entity.Users;
+import com.saranshit.repo.BlogRepo;
 import com.saranshit.repo.UserRepo;
 
 
@@ -20,7 +24,21 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private HttpSession session;
+	
+	@Autowired
+	private BlogRepo blogRepo;
 
+	
+	@Override
+	public BlogPosts blogDetails(Integer blogId) {
+		// TODO Auto-generated method stub
+		if(blogId!=null) {
+			 BlogPosts blogPosts = blogRepo.findById(blogId).get();
+			return blogPosts;
+			}
+		return null;
+	}
+	
 	@Override
 	public boolean signUp(SignUpForm form) {
 		Users findByEmail = userRepo.findByEmail(form.getEmail());

@@ -121,10 +121,5 @@ public class PostController {
 		return "filtered-data";
 	}
 	
-	@GetMapping("/")
-	public String getIndexPage(Model model) {
-		List<BlogPosts> allBlogs = service.getAllBlogs();
-		model.addAttribute("allBlogs", allBlogs);
-		return "index";
-	}
+	
 }
