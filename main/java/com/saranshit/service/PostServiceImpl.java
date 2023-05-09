@@ -58,12 +58,13 @@ public class PostServiceImpl implements PostService {
 	public List<BlogPosts> getFilteredData(String name) {
 		if(name!=null && name!="") {
 			Integer userId = (Integer)session.getAttribute("userId");
-		    Users users = userRepo.findById(userId).get();
+		    Optional<Users> user = userRepo.findById(userId);
+		    if(user.isPresent()) {
+		    	Users users = user.get();
 		    List<BlogPosts> posts = users.getPosts();
-		    List<BlogPosts> collect= posts.stream().filter(e->e.getTitle().contains(name))
+		    return posts.stream().filter(e->e.getTitle().contains(name))
 		    			  .collect(Collectors.toList());	
-		  
-		    return collect;
+		    }
 		 }
 		return null;
 	}

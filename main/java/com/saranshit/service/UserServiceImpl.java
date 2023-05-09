@@ -2,6 +2,7 @@ package com.saranshit.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpSession;
 
@@ -35,6 +36,17 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private CommentsRepo comRepo;
 
+	
+@Override
+	public List<BlogPosts> getFilteredData(String name) {
+		// TODO Auto-generated method stub
+	if(name!=null) {
+	List<BlogPosts> findAll = blogRepo.findAll();
+	return findAll.stream().filter(e->e.getTitle().contains(name))
+					.collect(Collectors.toList());
+		}
+		return null;
+	}
 	
 	@Override
 	public List<Comments> getComments() {

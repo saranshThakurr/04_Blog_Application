@@ -115,7 +115,6 @@ public class PostController {
 	public String searchBlog(@RequestParam String name,Model model) {
 		//Integer userId = (Integer)session.getAttribute("userId");
 		List<BlogPosts> filteredData = service.getFilteredData(name);
-		System.out.println(filteredData);
 		model.addAttribute("filteredBlogList", filteredData);
 
 		return "filtered-data";

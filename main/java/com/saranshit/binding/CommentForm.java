@@ -1,8 +1,6 @@
 package com.saranshit.binding;
 
-import java.time.LocalDate;
 
-import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.Data;
 

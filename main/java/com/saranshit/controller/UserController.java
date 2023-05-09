@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.saranshit.binding.CommentForm;
 import com.saranshit.binding.LoginForm;
@@ -32,6 +33,14 @@ public class UserController {
 	
 	@Autowired
 	public HttpSession session;
+	
+	@GetMapping("/filterBlog")
+	public String filterBlog(@RequestParam String name,Model model) {
+		List<BlogPosts> filteredData = service.getFilteredData(name);
+		model.addAttribute("filteredBlogList", filteredData);
+
+		return "filter-index";
+	}
 	
 	@PostMapping("/post")
 	public String handlePost(CommentForm form,Model model) {

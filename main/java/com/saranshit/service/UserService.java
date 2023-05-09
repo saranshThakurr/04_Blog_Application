@@ -15,4 +15,5 @@ public interface UserService {
 	public BlogPosts blogDetails(Integer blogId);
 	public boolean saveComments(CommentForm form);
 	public List<Comments> getComments();
+	public List<BlogPosts> getFilteredData(String name);
 }

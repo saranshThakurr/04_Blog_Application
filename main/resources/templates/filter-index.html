@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="accordion mt-5" id="allBlogs">
+			<div class="accordion-item" th:each="list:${filteredBlogList}">
+				<div class="accordion-header" style="background-color:grey;"><h2>
+					<a th:href="@{'/post/'+${list.blogId}}" id="blogTitle"><p th:text="${list.title}" /></a>
+                    </h2>
+						<p style="font-weight: bold" th:text="${list.createdDate}" />
+				</div>
+				<div id="panelsStayOpen-collapseOne"
+					class="accordion-collapse collapse show">
+					<div class="accordion-body">
+						<p th:text="${list.description}" />
+						<a th:href="@{'/post/'+${list.blogId}}" id="blogTitle">read more</a>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+</body>
+</html>

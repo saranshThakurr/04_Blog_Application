@@ -22,6 +22,27 @@
 	text-align: center;
 }
 </style>
+<script src="/webjars/jquery/3.6.4/jquery.min.js"></script>
+	<script>
+	$(document).ready(function(){
+		$("#submitBtn").click(function(e){
+			$.ajax({
+				tpye:"get",
+				url:"filterBlog",
+				data:{
+					name:$("#name").val()
+				},
+				success:function(result){
+					$("#allBlogs").hide();
+					$("#filterData").html(result);
+				},
+				error:function(result){
+					alert("error")
+				}
+			})
+		})
+	})
+	</script>
 
 </head>
 
@@ -47,16 +68,14 @@
 						<li class="nav-item"><a class="nav-link text-light"
 							href="/login">Login</a></li>
 					</ul>
-					<form class="d-flex" role="search">
-						<input class="form-control me-2" type="search"
-							placeholder="Search" aria-label="Search">
-						<button class="btn" type="submit"
-							style="background-color: #ECEFF1;">Search</button>
-					</form>
+					<form class="d-flex p-3" role="search">
+					<input class="form-control me-2" id="name" type="search" placeholder="Search" aria-label="Search">
+					<input class="btn btn-warning" type="button" value="search" id="submitBtn">
+				</form>
 				</div>
 			</div>
 		</nav>
-      <div id="postDetails"></div>
+      <div id="filterData"></div>
 		<div class="accordion mt-5" id="allBlogs">
 			<div class="accordion-item" th:each="list:${allBlogs}">
 				<div class="accordion-header" style="background-color:grey;"><h2>
