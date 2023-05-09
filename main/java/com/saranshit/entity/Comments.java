@@ -25,6 +25,7 @@ public class Comments {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer cid;
+	private String name;
 	private String email;
 	@Lob
 	private String comment;

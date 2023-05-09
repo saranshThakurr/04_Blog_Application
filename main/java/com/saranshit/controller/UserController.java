@@ -1,8 +1,9 @@
 package com.saranshit.controller;
 
 
-import java.security.Provider.Service;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,12 +12,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
-import org.springframework.web.bind.annotation.RequestParam;
 
+import com.saranshit.binding.CommentForm;
 import com.saranshit.binding.LoginForm;
 import com.saranshit.binding.SignUpForm;
 import com.saranshit.entity.BlogPosts;
+import com.saranshit.entity.Comments;
 import com.saranshit.service.PostService;
 import com.saranshit.service.UserService;
 
@@ -29,6 +30,21 @@ public class UserController {
 	@Autowired
 	public PostService postService;
 	
+	@Autowired
+	public HttpSession session;
+	
+	@PostMapping("/post")
+	public String handlePost(CommentForm form,Model model) {
+		boolean saveComments = service.saveComments(form);
+		Integer blogId = (Integer)session.getAttribute("blogId");
+		getPostsDetails(blogId, model);
+		if(saveComments) {
+			model.addAttribute("succMsg", "Comment added Successful");
+		}else {
+			model.addAttribute("errMsg", "Something went wrong");
+		}
+		return "post";
+	}
 	
 	@GetMapping("/")
 	public String getIndexPage(Model model) {
@@ -38,10 +54,16 @@ public class UserController {
 	}
 	@GetMapping("/post/{blogId}")
 	public String getPostsDetails(@PathVariable("blogId") Integer blogId ,Model model) {
+		session.setAttribute("blogId", blogId);
 		BlogPosts blogDetails = service.blogDetails(blogId);
 		model.addAttribute("blogDetails", blogDetails);
+		session.setAttribute("blogDetails", blogDetails);
+		List<Comments> comments = service.getComments();
+		model.addAttribute("commentList", comments);
+		model.addAttribute("objForm", new CommentForm());
 		return "post";
 	}
+
 	
 	@GetMapping("/signup")
 	public String signUp(Model model) {
